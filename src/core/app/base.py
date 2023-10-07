@@ -9,7 +9,7 @@ class Application(ABC):
 
     @abstractmethod
     def __post_init__(self):
-        self.init_server()
+        pass
 
     @abstractmethod
     def init_server(self) -> None:

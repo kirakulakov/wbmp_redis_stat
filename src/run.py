@@ -9,6 +9,7 @@ from core.app.app import RedisStatApplicationFactory
 from core.app.base import Application
 from core.config import Config
 from core.constants.config import CONFIG_LOCAL_PATH
+from core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from enums.enum import DriverEnum
 
 
@@ -25,15 +26,21 @@ def _get_config() -> Config:
 
 def _get_app(args) -> Application:
     match args.driver:
+
         case DriverEnum.redis_stat:
-            return RedisStatApplicationFactory.get_from_config(config)
+            app = RedisStatApplicationFactory.get_from_config(config)
+            RedisStatCustomRoute.set_app(app)
+            return app
         case _:
-            return RedisStatApplicationFactory.get_from_config(config)
+            app = RedisStatApplicationFactory.get_from_config(config)
+            RedisStatCustomRoute.set_app(app)
+            return app
 
 
 config = _get_config()
 args = _get_args()
 app = _get_app(args)
+
 
 if __name__ == "__main__":
     uvicorn.run(

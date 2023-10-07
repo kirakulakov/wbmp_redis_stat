@@ -6,10 +6,10 @@ from api.response.base import ResponseBase
 
 
 class ResponsePing(ResponseBase):
-    current_timestamp: str = Field(...)
+    server_time: str = Field(...)
 
 
 class ResponsePingFactory:
     @staticmethod
-    def get_from_timestamp(current_timestamp: datetime.datetime) -> ResponsePing:
-        return ResponsePing(current_timestamp=current_timestamp)
+    def get_from_current_server_time(time: str) -> ResponsePing:
+        return ResponsePing(server_time=time)
