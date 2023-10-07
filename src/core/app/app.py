@@ -1,5 +1,6 @@
 import asyncio
 from dataclasses import dataclass
+from time import sleep
 from typing import Type
 
 from api.routes.v1.routes import routers as v1_routers
@@ -29,8 +30,7 @@ class RedisStatApplication(Application):
             description=self.config.app.description,
             version=self.config.app.version,
             docs_url=self.config.server.docs_url,
-            openapi_url=self.config.server.openapi_url,
-            root_path=self.config.server.root_path
+            openapi_url=self.config.server.openapi_url
         )
 
     def init_redis(self) -> None:
@@ -41,7 +41,7 @@ class RedisStatApplication(Application):
 
             # decode_responses=True
         )
-        # asyncio.run(self.redis_client.ping())
+
 
     def include_routers(self):
         self._fast_api_server.include_router(v1_routers, prefix=API_V1)

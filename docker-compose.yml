@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  redis:
+    image: redis:7
+    container_name: redis_app
+    command: --port 6379
+    expose:
+      - 6379
+    networks:
+      redis_network:
+
+  app:
+    build:
+      context: .
+    container_name: fastapi_app
+    ports:
+      - 8001:8000
+    depends_on:
+      - redis
+    networks:
+      redis_network:
+
+networks:
+  redis_network:
