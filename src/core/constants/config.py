@@ -1,1 +1,1 @@
-CONFIG_LOCAL_PATH = "src/configs/local.yaml"
+CONFIG_LOCAL_PATH: str = "src/configs/local.yaml"
