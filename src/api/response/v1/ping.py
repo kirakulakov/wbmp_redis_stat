@@ -1,15 +1,13 @@
-import datetime
-
 from pydantic import Field
 
-from api.response.base import ResponseBase
+from api.response.base import ResponseBase, ResponseFactoryBase
 
 
-class ResponsePing(ResponseBase):
-    server_time: str = Field(...)
+class ResponseCurrentServerTime(ResponseBase):
+    current_server_time: str = Field(...)
 
 
-class ResponsePingFactory:
+class ResponseCurrentServerTimeFactory(ResponseFactoryBase):
     @staticmethod
-    def get_from_current_server_time(time: str) -> ResponsePing:
-        return ResponsePing(server_time=time)
+    def factory_method(time: str) -> ResponseCurrentServerTime:
+        return ResponseCurrentServerTime(current_server_time=time)
