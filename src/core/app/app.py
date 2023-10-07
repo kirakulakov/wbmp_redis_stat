@@ -1,12 +1,10 @@
-import asyncio
+import json
 from dataclasses import dataclass
-from time import sleep
-from typing import Type
 
 from api.routes.v1.routes import routers as v1_routers
 from core.app.base import Application, ApplicationFactory
 from core.config import Config
-from core.constants.server import API_V1
+from util.constants.server import API_V1
 from fastapi import FastAPI
 
 from util.class_object import singleton
@@ -38,10 +36,61 @@ class RedisStatApplication(Application):
             host=self.config.redis.host,
             port=int(self.config.redis.port),
             db=self.config.redis.db
-
-            # decode_responses=True
         )
 
+        @self._fast_api_server.on_event('shutdown')
+        async def close_redis() -> None:
+            await self.redis_client.close()
+
+        @self._fast_api_server.on_event('startup')
+        async def generate_fake_data() -> None:
+            data = {
+                "name": "suppliers",
+                "value": 484961,
+                "history": [
+                    482152,
+                    482630,
+                    483057,
+                    483453,
+                    483897,
+                    484354,
+                    484961
+                ]
+            }
+            json_data = json.dumps(data)
+            await self.redis_client.set("Statistic:suppliers", json_data)
+
+            data = {
+                "name": "brands",
+                "value": 484961,
+                "history": [
+                    482152,
+                    482630,
+                    483057,
+                    483453,
+                    483897,
+                    484354,
+                    484961
+                ]
+            }
+            json_data = json.dumps(data)
+            await self.redis_client.set("Statistic:brands", json_data)
+
+            data = {
+                "name": "cards",
+                "value": 484961,
+                "history": [
+                    482152,
+                    482630,
+                    483057,
+                    483453,
+                    483897,
+                    484354,
+                    484961
+                ]
+            }
+            json_data = json.dumps(data)
+            await self.redis_client.set("Statistic:cards", json_data)
 
     def include_routers(self):
         self._fast_api_server.include_router(v1_routers, prefix=API_V1)

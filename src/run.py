@@ -8,9 +8,9 @@ import uvicorn
 from core.app.app import RedisStatApplicationFactory
 from core.app.base import Application
 from core.config import Config
-from core.constants.config import CONFIG_LOCAL_PATH
 from core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from enums.enum import DriverEnum
+from util.constants.config import CONFIG_LOCAL_PATH
 
 
 def _get_args() -> Namespace:
