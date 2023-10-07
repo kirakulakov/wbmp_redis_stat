@@ -1,0 +1,1 @@
+CONFIG_LOCAL_PATH = "src/configs/local.yaml"
