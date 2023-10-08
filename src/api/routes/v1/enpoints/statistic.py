@@ -1,11 +1,14 @@
 from fastapi import APIRouter, Depends
 
 from src.api.depends import get_statistic_service
-from src.api.response.v1.statistic import ResponseStatistic, ResponseStatisticFactory
+from src.api.response.v1.statistic import (ResponseStatistic,
+                                           ResponseStatisticFactory)
+from src.core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from src.services.statistic import StatisticService
 
 statistic_router = APIRouter(
-    prefix="/statistic"
+    prefix="/statistic",
+    route_class=RedisStatCustomRoute
 )
 
 

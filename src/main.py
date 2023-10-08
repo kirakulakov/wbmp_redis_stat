@@ -1,6 +1,6 @@
 import os
 
-from src.core.app.app import Application
+from src.core.app import Application
 from src.core.config import Config
 from src.core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from src.utils.constants.config import CONFIG_LOCAL_PATH
@@ -14,6 +14,7 @@ def _get_config() -> Config:
 def _get_app(config: Config) -> Application:
     app = Application(config)
     RedisStatCustomRoute.set_app(app)
+
     app.init_server()
     app.init_redis()
     app.include_routers()
@@ -23,11 +24,3 @@ def _get_app(config: Config) -> Application:
 
 config = _get_config()
 app = _get_app(config=config)
-
-# if __name__ == "__main__":
-#     uvicorn.run(
-#         "run:app",
-#         host=config.server.host,
-#         port=config.server.port,
-#         workers=config.server.workers
-#     )

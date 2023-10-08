@@ -1,21 +1,19 @@
-from typing import Callable, Optional
+from typing import Callable
 
 from fastapi.routing import APIRoute
 from starlette.requests import Request
 from starlette.responses import Response
 
-from src.core.app.app import Application
-
 
 class RedisStatCustomRoute(APIRoute):
-    __app: Optional[Application] = None
+    __app = None
 
     @classmethod
-    def set_app(cls, app: Application) -> None:
+    def set_app(cls, app) -> None:
         cls.__app = app
 
     @classmethod
-    def get_app(cls) -> Application:
+    def get_app(cls):
         if not cls.__app:
             raise ValueError
         return cls.__app

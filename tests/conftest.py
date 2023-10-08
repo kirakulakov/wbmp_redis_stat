@@ -1,12 +1,3 @@
-
-import sys
-import os
-
-current_location = os.path.abspath(sys.path[0])
-print("Абсолютное текущее расположение:", current_location)
-
-
-
 import asyncio
 import os
 from typing import Generator
@@ -14,7 +5,7 @@ from typing import Generator
 import pytest
 from starlette.testclient import TestClient
 
-from src.core.app.app import Application
+from src.core.app import Application
 from src.core.config import Config
 from src.core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from src.utils.constants.config import CONFIG_TEST_PATH

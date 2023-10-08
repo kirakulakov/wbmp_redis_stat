@@ -1,14 +1,15 @@
 import json
 from dataclasses import dataclass
 
-from src.api.routes.v1.routes import routers as v1_routers
-from src.core.config import Config
-from src.utils.constants.server import API_V1
+import aioredis
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from src.api.routes.v1.routes import routers as v1_routers
+from src.core.config import Config
 from src.utils.class_object import singleton
-import aioredis
+from src.utils.constants.server import API_V1
+
 
 @singleton
 @dataclass
@@ -37,6 +38,20 @@ class Application:
             host=self.config.redis.host,
             port=int(self.config.redis.port),
             db=self.config.redis.db
+        )
+
+    def include_routers(self):
+        self._fast_api_server.include_router(v1_routers, prefix=API_V1)
+
+    def add_middleware(self):
+        self._fast_api_server.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
+            allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers",
+                           "Access-Control-Allow-Origin",
+                           "Authorization"],
         )
 
         @self._fast_api_server.on_event('shutdown')
@@ -92,19 +107,6 @@ class Application:
             }
             json_data = json.dumps(data)
             await self.redis_client.set("Statistic:cards", json_data)
-
-    def include_routers(self):
-        self._fast_api_server.include_router(v1_routers, prefix=API_V1)
-
-    def add_middleware(self):
-        self._fast_api_server.add_middleware(
-            CORSMiddleware,
-            allow_origins=["*"],
-            allow_credentials=True,
-            allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
-            allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
-                           "Authorization"],
-        )
 
     def __call__(self, *args, **kwargs) -> FastAPI:
         return self._fast_api_server
