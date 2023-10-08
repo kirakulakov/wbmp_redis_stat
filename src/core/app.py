@@ -58,55 +58,5 @@ class Application:
         async def close_redis() -> None:
             await self.redis_client.close()
 
-        @self._fast_api_server.on_event('startup')
-        async def generate_fake_data() -> None:
-            data = {
-                "name": "suppliers",
-                "value": 484961,
-                "history": [
-                    482152,
-                    482630,
-                    483057,
-                    483453,
-                    483897,
-                    484354,
-                    484961
-                ]
-            }
-            json_data = json.dumps(data)
-            await self.redis_client.set("Statistic:suppliers", json_data)
-
-            data = {
-                "name": "brands",
-                "value": 484961,
-                "history": [
-                    482152,
-                    482630,
-                    483057,
-                    483453,
-                    483897,
-                    484354,
-                    484961
-                ]
-            }
-            json_data = json.dumps(data)
-            await self.redis_client.set("Statistic:brands", json_data)
-
-            data = {
-                "name": "cards",
-                "value": 484961,
-                "history": [
-                    482152,
-                    482630,
-                    483057,
-                    483453,
-                    483897,
-                    484354,
-                    484961
-                ]
-            }
-            json_data = json.dumps(data)
-            await self.redis_client.set("Statistic:cards", json_data)
-
     def __call__(self, *args, **kwargs) -> FastAPI:
         return self._fast_api_server
