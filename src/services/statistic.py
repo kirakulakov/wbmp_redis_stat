@@ -3,7 +3,7 @@ from src.schemas.statistic import StatisticModel
 from src.services.base import BaseService
 
 
-class StatisticService(BaseService):
+class StatisticsService(BaseService):
     def __init__(self, repository: BaseRepository):
         super().__init__(repository=repository)
 

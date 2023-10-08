@@ -4,7 +4,7 @@ from starlette.requests import Request
 from src.core.config import Config
 from src.repositories.statistic import StatisticRepository
 from src.services.ping import PingService
-from src.services.statistic import StatisticService
+from src.services.statistic import StatisticsService
 
 
 def get_config(request: Request) -> Config:
@@ -23,5 +23,5 @@ def get_statistic_repository(redis=Depends(get_redis)) -> StatisticRepository:
     return StatisticRepository(db=redis)
 
 
-def get_statistic_service(repository=Depends(get_statistic_repository)) -> StatisticService:
-    return StatisticService(repository=repository)
+def get_statistics_service(repository=Depends(get_statistic_repository)) -> StatisticsService:
+    return StatisticsService(repository=repository)
