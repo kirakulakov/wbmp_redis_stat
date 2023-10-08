@@ -8,8 +8,8 @@ app:
 server:
   docs_url: '/docs'
   openapi_url: '/openapi.json'
-  host: app
-  port: 8000
+  host: fast_api_server
+  port: 8001
   workers: 1
 
 redis:

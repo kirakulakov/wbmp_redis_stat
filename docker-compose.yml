@@ -5,21 +5,19 @@ services:
     container_name: redis
     restart: always
     networks:
-      redis_network:
+      main_network:
 
   app:
     build:
       context: .
-    container_name: app
+    container_name: fast_api_server
     depends_on:
       - redis
-    ports:
-      - "8000:8000"
     restart: always
     environment:
       - CONFIG=src/configs/docker-config.yaml
     networks:
-      redis_network:
+      main_network:
 
   nginx:
     build:
@@ -27,12 +25,12 @@ services:
       dockerfile: Dockerfile
     container_name: proxy-server
     ports:
-      - "8001:8001"
+      - "8000:8000"
     networks:
-      redis_network:
+      main_network:
     restart: always
     depends_on:
       - app
 
 networks:
-  redis_network:
+  main_network:
