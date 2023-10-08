@@ -3,7 +3,7 @@ from typing import Type
 
 from pydantic import BaseModel
 
-from util.factory import BaseFactory
+from src.utils.factory import BaseFactory
 
 
 class ResponseBase(BaseModel):

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from schema.base import BaseModel
+from src.schemas.base import BaseModel
 
 
 class BaseRepository(ABC):

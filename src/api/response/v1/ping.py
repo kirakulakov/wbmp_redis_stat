@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from api.response.base import ResponseBase, ResponseFactoryBase
+from src.api.response.base import ResponseBase, ResponseFactoryBase
 
 
 class ResponseCurrentServerTime(ResponseBase):

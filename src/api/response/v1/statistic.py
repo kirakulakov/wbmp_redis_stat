@@ -1,7 +1,7 @@
 from pydantic import Field
 
-from api.response.base import ResponseBase, ResponseFactoryBase
-from schema.statistic import StatisticModel
+from src.api.response.base import ResponseBase, ResponseFactoryBase
+from src.schemas.statistic import StatisticModel
 
 
 class ResponseStatistic(ResponseBase):

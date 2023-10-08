@@ -1,5 +1,5 @@
-from schema.base import BaseModel
-from util.factory import BaseFactory
+from src.schemas.base import BaseModel
+from src.utils.factory import BaseFactory
 
 
 class StatisticModel(BaseModel):

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from repository.base import BaseRepository
+from src.repositories.base import BaseRepository
 
 
 class BaseService(ABC):

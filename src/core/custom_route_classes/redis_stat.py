@@ -1,10 +1,10 @@
-from typing import Callable, Optional, Type
+from typing import Callable, Optional
 
 from fastapi.routing import APIRoute
 from starlette.requests import Request
 from starlette.responses import Response
 
-from core.app.base import Application
+from src.core.app.app import Application
 
 
 class RedisStatCustomRoute(APIRoute):

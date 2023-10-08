@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-from api.routes.v1.enpoints.ping import ping_router
-from api.routes.v1.enpoints.statistic import statistic_router
+from src.api.routes.v1.enpoints.ping import ping_router
+from src.api.routes.v1.enpoints.statistic import statistic_router
 
-from util.constants.server import V1
+from src.utils.constants.server import V1
 
 routers = APIRouter()
 router_list = [

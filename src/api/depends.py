@@ -1,10 +1,10 @@
 from fastapi import Depends
 from starlette.requests import Request
 
-from core.config import Config
-from repository.statistic import StatisticRepository
-from services.ping import PingService
-from services.statistic import StatisticService
+from src.core.config import Config
+from src.repositories.statistic import StatisticRepository
+from src.services.ping import PingService
+from src.services.statistic import StatisticService
 
 
 def get_config(request: Request) -> Config:

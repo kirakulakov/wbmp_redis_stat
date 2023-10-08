@@ -1,6 +1,6 @@
-from repository.base import BaseRepository
-from schema.statistic import StatisticModel
-from services.base import BaseService
+from src.repositories.base import BaseRepository
+from src.schemas.statistic import StatisticModel
+from src.services.base import BaseService
 
 
 class StatisticService(BaseService):

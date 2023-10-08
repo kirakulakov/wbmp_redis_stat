@@ -1,25 +1,26 @@
 import json
 from dataclasses import dataclass
 
-from api.routes.v1.routes import routers as v1_routers
-from core.app.base import Application, ApplicationFactory
-from core.config import Config
-from util.constants.server import API_V1
+from src.api.routes.v1.routes import routers as v1_routers
+from src.core.config import Config
+from src.utils.constants.server import API_V1
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-from util.class_object import singleton
+from src.utils.class_object import singleton
 import aioredis
 
 @singleton
 @dataclass
-class RedisStatApplication(Application):
+class Application:
     config: Config
     redis_client: aioredis.Redis | None = None
 
-    def __post_init__(self):
-        self.init_server()
-        self.init_redis()
-        self.include_routers()
+    @property
+    def fast_api_server(self) -> FastAPI:
+        if not self._fast_api_server:
+            raise ValueError
+        return self._fast_api_server
 
     def init_server(self) -> None:
         self._fast_api_server = FastAPI(
@@ -95,11 +96,15 @@ class RedisStatApplication(Application):
     def include_routers(self):
         self._fast_api_server.include_router(v1_routers, prefix=API_V1)
 
+    def add_middleware(self):
+        self._fast_api_server.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
+            allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
+                           "Authorization"],
+        )
+
     def __call__(self, *args, **kwargs) -> FastAPI:
         return self._fast_api_server
-
-
-class RedisStatApplicationFactory(ApplicationFactory):
-    @staticmethod
-    def get_from_config(config: Config) -> Application:
-        return RedisStatApplication(config)

@@ -1,7 +1,7 @@
 from aioredis import Redis
 
-from repository.redis import RedisRepository
-from schema.statistic import StatisticModel
+from src.repositories.redis import RedisRepository
+from src.schemas.statistic import StatisticModel
 
 
 class StatisticRepository(RedisRepository):

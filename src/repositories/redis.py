@@ -2,10 +2,10 @@ import json
 
 from aioredis import Redis
 
-from repository.base import BaseRepository
-from schema.base import BaseModel
-from schema.statistic import StatisticModel, StatisticModelFactory
-from util.constants.server import UTF_8
+from src.repositories.base import BaseRepository
+from src.schemas.base import BaseModel
+from src.schemas.statistic import StatisticModel, StatisticModelFactory
+from src.utils.constants.server import UTF_8
 
 TARGET_KEYS = ["Statistic:suppliers", "Statistic:brands", "Statistic:cards"]
 

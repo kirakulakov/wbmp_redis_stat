@@ -1,15 +1,14 @@
 from aioredis import Redis
 from fastapi import APIRouter, Depends
 
-from api.depends import get_ping_service
-from api.response.v1.ping import ResponseCurrentServerTime, ResponseCurrentServerTimeFactory
-from core.custom_route_classes.redis_stat import RedisStatCustomRoute
-from services.ping import PingService
+from src.api.depends import get_ping_service
+from src.api.response.v1.ping import ResponseCurrentServerTime, ResponseCurrentServerTimeFactory
+from src.services.ping import PingService
 
-from api.depends import get_redis
+from src.api.depends import get_redis
 
 ping_router = APIRouter(
-    prefix="/ping", route_class=RedisStatCustomRoute
+    prefix="/ping"
 )
 
 
