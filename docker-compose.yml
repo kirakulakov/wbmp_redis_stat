@@ -5,7 +5,7 @@ services:
     container_name: redis
     restart: always
     networks:
-      main_network:
+      - main_network
 
   app:
     build:
@@ -17,7 +17,7 @@ services:
     environment:
       - CONFIG=src/configs/docker-config.yaml
     networks:
-      main_network:
+      - main_network
 
   nginx:
     build:
@@ -27,7 +27,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      main_network:
+      - main_network
     restart: always
     depends_on:
       - app
