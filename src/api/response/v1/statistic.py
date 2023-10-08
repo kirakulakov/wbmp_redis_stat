@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from src.api.response.base import ResponseBase, ResponseFactoryBase
+from src.api.response.base import ResponseBase
 from src.schemas.statistic import StatisticModel
 
 
@@ -9,7 +9,7 @@ class ResponseStatistic(ResponseBase):
     data: dict = Field(...)
 
 
-class ResponseStatisticFactory(ResponseFactoryBase):
+class ResponseStatisticFactory:
     @staticmethod
     def factory_method(statistic_model: StatisticModel) -> ResponseStatistic:
         return ResponseStatistic(

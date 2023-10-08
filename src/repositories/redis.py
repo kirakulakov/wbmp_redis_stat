@@ -7,7 +7,7 @@ from src.schemas.base import BaseModel
 from src.schemas.statistic import StatisticModel, StatisticModelFactory
 from src.utils.constants.server import UTF_8
 
-_TARGET_KEYS = ["Statistic:suppliers", "Statistic:brands", "Statistic:cards"]
+_TARGET_KEYS = ["Statistic:suppliers", "Statistic:brands", "Statistic:cars"]
 
 
 class RedisRepository(BaseRepository):
@@ -25,7 +25,7 @@ class RedisRepository(BaseRepository):
                     data = json.loads(value.decode(UTF_8))
 
                 except (json.JSONDecodeError, UnicodeDecodeError, AttributeError) as e:
-                    # logging here can be for `e` exception case
+                    # logging/sentry here can be for `e` exception case.
                     continue
                 else:
                     statistic = StatisticModelFactory.factory_method(data=data, key=key)

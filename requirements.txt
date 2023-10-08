@@ -28,3 +28,4 @@ typing_extensions==4.8.0
 urllib3==1.26.17
 uvicorn==0.17.6
 Faker==11.3.0
+flake8==6.1.0

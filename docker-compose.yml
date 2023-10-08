@@ -23,7 +23,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    container_name: proxy-server
+    container_name: proxy_server
     ports:
       - "8000:8000"
     networks:
