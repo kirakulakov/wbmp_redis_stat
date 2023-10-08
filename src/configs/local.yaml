@@ -8,7 +8,7 @@ app:
 server:
   docs_url: '/docs'
   openapi_url: '/openapi.json'
-  host: '127.0.0.1'
+  host: app
   port: 8000
   workers: 1
 
