@@ -16,6 +16,8 @@ services:
     ports:
       - "8000:8000"
     restart: always
+    environment:
+      - CONFIG=src/configs/docker-config.yaml
     networks:
       redis_network:
 
