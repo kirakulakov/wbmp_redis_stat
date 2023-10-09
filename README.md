@@ -30,7 +30,7 @@ python3.[10+ recommended] -m venv venv && . ./venv/bin/activate && pip install -
 
 #### Запуск тестов
 ```
-pytest
+pytest app
 ```
 
 #### Запуск сервиса
