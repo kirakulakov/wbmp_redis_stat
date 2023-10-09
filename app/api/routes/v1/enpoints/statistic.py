@@ -7,7 +7,7 @@ from app.core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from app.services.statistic import StatisticsService
 
 statistic_router = APIRouter(
-    prefix="/statistic",
+    prefix="/statistics",
     route_class=RedisStatCustomRoute
 )
 

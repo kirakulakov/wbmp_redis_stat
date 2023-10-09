@@ -1,6 +1,6 @@
 app:
-  name: 'Statistic vendor for widgets'
-  description: 'Backend for statistic vendor'
+  name: 'Service provider of statistics'
+  description: 'Backend for service provider of statistics'
   debug: true
   version: '0.0.1'
   env: 'local'

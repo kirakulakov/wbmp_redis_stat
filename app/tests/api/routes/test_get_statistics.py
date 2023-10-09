@@ -26,6 +26,6 @@ def test_get_statistic(client: TestClient, redis_data_factory, redis_client):
         history=[random.randint(1, 1000) for _ in range(10)]
     )
 
-    response = client.get("api/v1/statistic")
+    response = client.get("api/v1/statistics")
     assert response.status_code == 200
     assert len(response.json()) > 0
