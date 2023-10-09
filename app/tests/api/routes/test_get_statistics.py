@@ -29,3 +29,8 @@ def test_get_statistic(client: TestClient, redis_data_factory, redis_client):
     response = client.get("api/v1/statistics")
     assert response.status_code == 200
     assert len(response.json()) > 0
+    for r in response.json():
+        assert r['data']['name'] is not None
+        assert r['data']['value'] is not None
+        assert len(r['data']['history']) > 0
+
