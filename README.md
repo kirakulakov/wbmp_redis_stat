@@ -9,6 +9,7 @@ git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
 && cd wbmp_redis_stat \
 && docker compose up --build
 ```
+### go to http://127.0.0.1:8000/docs to view swagger docs
 
 <br>
 
