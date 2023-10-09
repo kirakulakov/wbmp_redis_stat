@@ -13,7 +13,9 @@ git clone git@github.com:kirakulakov/wbmp_redis_stat.git && cd wbmp_redis_stat &
 # Local run
 #### Клонировать репозиторий и перейти в директорию с проектом
 ```
-git clone git@github.com:kirakulakov/wbmp_redis_stat.git && cd wbmp_redis_stat
+git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
+&& cd wbmp_redis_stat \
+&& docker compose up --build
 ```
 
 #### Создать виртуальное окружение и установить зависимости
