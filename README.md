@@ -19,6 +19,10 @@ git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
 && cd wbmp_redis_stat
 ```
 
+#### В app/configs/local.yaml в случае необходимости настроить конфиги для локального развертывания
+![config](./doc/images/config.png)
+
+
 #### Создать виртуальное окружение и установить зависимости
 ```
 python3.[10+ recommended] -m venv venv && . ./venv/bin/activate && pip install -r requirements.txt
