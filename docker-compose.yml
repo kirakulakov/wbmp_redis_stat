@@ -9,7 +9,7 @@ services:
 
   app:
     build:
-      context: ./app
+      context: .
     container_name: fast_api_server
     depends_on:
       - redis
