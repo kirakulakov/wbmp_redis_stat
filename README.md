@@ -25,7 +25,9 @@ git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
 
 #### Создать виртуальное окружение и установить зависимости
 ```
-python3.[10 recommended] -m venv venv && . ./venv/bin/activate && pip install -r requirements.txt
+python3.[10 recommended] -m venv venv \
+&& . ./venv/bin/activate \
+&& pip install -r requirements.txt
 ```
 
 #### Запуск тестов
