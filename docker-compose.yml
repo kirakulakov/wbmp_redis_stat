@@ -9,13 +9,13 @@ services:
 
   app:
     build:
-      context: .
+      context: ./app
     container_name: fast_api_server
     depends_on:
       - redis
     restart: always
     environment:
-      - CONFIG=src/configs/docker-config.yaml
+      - CONFIG=app/configs/docker-config.yaml
     networks:
       - main_network
 
