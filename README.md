@@ -3,9 +3,11 @@
 
 <br>
 
-# Run in Docker
+# Run in Docker [recommended]
 ```
-git clone git@github.com:kirakulakov/wbmp_redis_stat.git && cd wbmp_redis_stat && docker compose up --build
+git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
+&& cd wbmp_redis_stat \
+&& docker compose up --build
 ```
 
 <br>
@@ -14,8 +16,7 @@ git clone git@github.com:kirakulakov/wbmp_redis_stat.git && cd wbmp_redis_stat &
 #### Клонировать репозиторий и перейти в директорию с проектом
 ```
 git clone git@github.com:kirakulakov/wbmp_redis_stat.git \
-&& cd wbmp_redis_stat \
-&& docker compose up --build
+&& cd wbmp_redis_stat
 ```
 
 #### Создать виртуальное окружение и установить зависимости
