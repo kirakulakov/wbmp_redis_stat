@@ -9,7 +9,7 @@ from aioredis import Redis as async_redis_client
 from redis import Redis as sync_redis_client
 from starlette.testclient import TestClient
 
-from app.core.app import Application
+from app.core.app import Application, AppBuilder
 from app.core.config import Config
 from app.core.custom_route_classes.redis_stat import RedisStatCustomRoute
 from app.utils.constants.config import CONFIG_TEST_PATH
@@ -31,10 +31,7 @@ def config() -> Config:
 @pytest.fixture(scope="session")
 def app(config) -> Application:
     app = Application(config)
-    RedisStatCustomRoute.set_app(app)
-    app.init_server()
-    app.init_redis()
-    app.include_routers()
+    app.full_init()
 
     return app
 

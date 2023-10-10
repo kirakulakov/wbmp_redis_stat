@@ -6,8 +6,10 @@ def singleton(class_):
 
     @functools.wraps(class_)
     def getinstance(*args, **kwargs):
-        if class_ not in instances:
-            instances[class_] = class_(*args, **kwargs)
-        return instances[class_]
+        key = (class_, tuple(args), frozenset(kwargs.items()))
+
+        if key not in instances:
+            instances[key] = class_(*args, **kwargs)
+        return instances[key]
 
     return getinstance
